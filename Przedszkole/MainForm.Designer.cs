@@ -29,24 +29,31 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabData = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.calendar = new System.Windows.Forms.MonthCalendar();
+            this.tabRejestr = new System.Windows.Forms.TabPage();
+            this.labelSelectedDate = new System.Windows.Forms.Label();
+            this.dgvRegister = new System.Windows.Forms.DataGridView();
+            this.tabUczniowie = new System.Windows.Forms.TabPage();
             this.buttonDodaj = new System.Windows.Forms.Button();
             this.textBoxDodaj = new System.Windows.Forms.TextBox();
             this.dgvPupils = new System.Windows.Forms.DataGridView();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPupils)).BeginInit();
-            this.tabPage1.SuspendLayout();
+            this.tabData.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tabRejestr.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegister)).BeginInit();
+            this.tabUczniowie.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPupils)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabData);
+            this.tabControl1.Controls.Add(this.tabRejestr);
+            this.tabControl1.Controls.Add(this.tabUczniowie);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -54,17 +61,82 @@
             this.tabControl1.Size = new System.Drawing.Size(800, 491);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabPage3
+            // tabData
             // 
-            this.tabPage3.Controls.Add(this.buttonDodaj);
-            this.tabPage3.Controls.Add(this.textBoxDodaj);
-            this.tabPage3.Controls.Add(this.dgvPupils);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(792, 462);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Uczniowie";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabData.Controls.Add(this.tableLayoutPanel1);
+            this.tabData.Location = new System.Drawing.Point(4, 25);
+            this.tabData.Name = "tabData";
+            this.tabData.Padding = new System.Windows.Forms.Padding(3);
+            this.tabData.Size = new System.Drawing.Size(792, 462);
+            this.tabData.TabIndex = 0;
+            this.tabData.Text = "Data";
+            this.tabData.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.calendar, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 456);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // calendar
+            // 
+            this.calendar.CalendarDimensions = new System.Drawing.Size(2, 2);
+            this.calendar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.calendar.Location = new System.Drawing.Point(9, 9);
+            this.calendar.MinimumSize = new System.Drawing.Size(600, 400);
+            this.calendar.Name = "calendar";
+            this.calendar.TabIndex = 0;
+            this.calendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.onDateSelected);
+            // 
+            // tabRejestr
+            // 
+            this.tabRejestr.Controls.Add(this.buttonRefresh);
+            this.tabRejestr.Controls.Add(this.labelSelectedDate);
+            this.tabRejestr.Controls.Add(this.dgvRegister);
+            this.tabRejestr.Location = new System.Drawing.Point(4, 25);
+            this.tabRejestr.Name = "tabRejestr";
+            this.tabRejestr.Padding = new System.Windows.Forms.Padding(3);
+            this.tabRejestr.Size = new System.Drawing.Size(792, 462);
+            this.tabRejestr.TabIndex = 3;
+            this.tabRejestr.Text = "Rejestr";
+            this.tabRejestr.UseVisualStyleBackColor = true;
+            // 
+            // labelSelectedDate
+            // 
+            this.labelSelectedDate.AutoSize = true;
+            this.labelSelectedDate.Location = new System.Drawing.Point(8, 17);
+            this.labelSelectedDate.Name = "labelSelectedDate";
+            this.labelSelectedDate.Size = new System.Drawing.Size(0, 17);
+            this.labelSelectedDate.TabIndex = 2;
+            // 
+            // dgvRegister
+            // 
+            this.dgvRegister.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRegister.Location = new System.Drawing.Point(3, 54);
+            this.dgvRegister.Name = "dgvRegister";
+            this.dgvRegister.RowTemplate.Height = 24;
+            this.dgvRegister.Size = new System.Drawing.Size(781, 405);
+            this.dgvRegister.TabIndex = 1;
+            this.dgvRegister.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellEdit);
+            // 
+            // tabUczniowie
+            // 
+            this.tabUczniowie.Controls.Add(this.buttonDodaj);
+            this.tabUczniowie.Controls.Add(this.textBoxDodaj);
+            this.tabUczniowie.Controls.Add(this.dgvPupils);
+            this.tabUczniowie.Location = new System.Drawing.Point(4, 25);
+            this.tabUczniowie.Name = "tabUczniowie";
+            this.tabUczniowie.Size = new System.Drawing.Size(792, 462);
+            this.tabUczniowie.TabIndex = 2;
+            this.tabUczniowie.Text = "Uczniowie";
+            this.tabUczniowie.UseVisualStyleBackColor = true;
             // 
             // buttonDodaj
             // 
@@ -92,38 +164,15 @@
             this.dgvPupils.Size = new System.Drawing.Size(682, 397);
             this.dgvPupils.TabIndex = 0;
             // 
-            // tabPage1
+            // buttonRefresh
             // 
-            this.tabPage1.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 462);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Dzien";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.monthCalendar1, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 456);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.CalendarDimensions = new System.Drawing.Size(2, 2);
-            this.monthCalendar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.monthCalendar1.Location = new System.Drawing.Point(9, 9);
-            this.monthCalendar1.MinimumSize = new System.Drawing.Size(600, 400);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
+            this.buttonRefresh.Location = new System.Drawing.Point(641, 10);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(120, 23);
+            this.buttonRefresh.TabIndex = 3;
+            this.buttonRefresh.Text = "Odswiez";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.reloadRegister);
             // 
             // MainForm
             // 
@@ -135,24 +184,31 @@
             this.Text = "Przedszkole";
             this.Load += new System.EventHandler(this.MainFormOnLoad);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPupils)).EndInit();
-            this.tabPage1.ResumeLayout(false);
+            this.tabData.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tabRejestr.ResumeLayout(false);
+            this.tabRejestr.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegister)).EndInit();
+            this.tabUczniowie.ResumeLayout(false);
+            this.tabUczniowie.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPupils)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabData;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.MonthCalendar calendar;
+        private System.Windows.Forms.TabPage tabUczniowie;
         private System.Windows.Forms.DataGridView dgvPupils;
         private System.Windows.Forms.Button buttonDodaj;
         private System.Windows.Forms.TextBox textBoxDodaj;
         public System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabRejestr;
+        private System.Windows.Forms.DataGridView dgvRegister;
+        private System.Windows.Forms.Label labelSelectedDate;
+        private System.Windows.Forms.Button buttonRefresh;
     }
 }
 
