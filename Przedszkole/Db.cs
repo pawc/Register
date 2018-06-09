@@ -89,5 +89,24 @@ namespace Przedszkole
             return result;
         }
 
+        public String executeQueryScalarString(String query)
+        {
+            MySqlCommand command;
+            String result = null;
+
+            try
+            {
+                command = new MySqlCommand(query, connection);
+                result = Convert.ToString(command.ExecuteScalar());
+            }
+            catch (Exception e1)
+            {
+                MessageBox.Show(e1.ToString());
+            }
+
+            return result;
+        }
+
+
     }
 }

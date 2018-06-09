@@ -82,7 +82,12 @@ namespace Przedszkole
         private void onCellEdit(object sender, DataGridViewCellEventArgs e)
         {
             String newTime = dgvRegister[e.ColumnIndex, e.RowIndex].Value.ToString();
-            if (!InputValidator.validateTime(newTime)) return;
+            if (!InputValidator.validateTime(newTime))
+            {
+                MessageBox.Show("Niepoprawny format danych. Uzyj [hh:mm]");
+                reloadRegister();
+                return;
+            }
             String pupil = dgvRegister[0, e.RowIndex].Value.ToString();
             int column = e.ColumnIndex;
             switch (column)
@@ -96,7 +101,17 @@ namespace Przedszkole
                     {
                         if (isTimeIn(pupil))
                         {
-                            updateInTime(pupil, newTime);
+                            if (isTimeOut(pupil))
+                            {
+                                String timeOut = getTimeOut(pupil);
+                                if (!InputValidator.compareTimes(newTime, timeOut))
+                                {
+                                    MessageBox.Show("Godzina przyjscia nie moze byc pozniejsza niz godzina wyjscia");
+                                    reloadRegister();
+                                    return;
+                                }
+                            }
+                            updateTimeIn(pupil, newTime);
                         }
                         else
                         {
@@ -109,7 +124,15 @@ namespace Przedszkole
                     {
                         if (isTimeIn(pupil))
                         {
-                            updateOutTime(pupil, newTime);
+                            String timeIn = getTimeIn(pupil);
+                            if(InputValidator.compareTimes(timeIn, newTime))
+                            {
+                                updateTimeOut(pupil, newTime);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Godzina przyjscia nie moze byc pozniejsza niz godzina wyjscia");
+                            }
                         }
                         else
                         {
@@ -122,7 +145,7 @@ namespace Przedszkole
             reloadRegister();
         }
 
-        private void updateInTime(String pupilId, String time)
+        private void updateTimeIn(String pupilId, String time)
         {
             String update = "UPDATE register SET timeIn = CONCAT(date(timeIn),' " + time + ":00') " +
                 "WHERE pupilId = " + pupilId + " AND DATE_FORMAT(timeIn, '%d.%m.%Y') = '" + selectedDateString + "';";
@@ -130,7 +153,7 @@ namespace Przedszkole
             reloadRegister();
         }
 
-        private void updateOutTime(String pupilId, String time)
+        private void updateTimeOut(String pupilId, String time)
         {
             String update = "UPDATE register SET timeOut = CONCAT(date(timeIn),' " + time + ":00') " +
                 "WHERE pupilId = " + pupilId + " AND DATE_FORMAT(timeIn, '%d.%m.%Y') = '" + selectedDateString + "';";
@@ -145,7 +168,31 @@ namespace Przedszkole
 
             if (db.executeQueryScalarInt(query) == 1) return true;
             else return false;
+        }
 
+        private Boolean isTimeOut(String pupilId)
+        {
+            String query = "SELECT IF((SELECT count(timeOut) FROM register " +
+                "WHERE pupilId=" + pupilId + " AND DATE_FORMAT(timeIn, '%d.%m.%Y') = '" + selectedDateString + "')>0, 1, 0);";
+
+            if (db.executeQueryScalarInt(query) == 1) return true;
+            else return false;
+        }
+
+        private String getTimeIn(String pupilId)
+        {
+            String query = "SELECT DATE_FORMAT(timeIn, '%H:%i') FROM register " +
+                "WHERE pupilId=" + pupilId + " AND DATE_FORMAT(timeIn, '%d.%m.%Y') = '" + selectedDateString + "';";
+
+            return db.executeQueryScalarString(query);
+        }
+
+        private String getTimeOut(String pupilId)
+        {
+            String query = "SELECT DATE_FORMAT(timeOut, '%H:%i') FROM register " +
+                "WHERE pupilId=" + pupilId + " AND DATE_FORMAT(timeIn, '%d.%m.%Y') = '" + selectedDateString + "';";
+
+            return db.executeQueryScalarString(query);
         }
 
         private void insertTimeIn(String pupilId, String newTime)
