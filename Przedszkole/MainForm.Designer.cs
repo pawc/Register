@@ -33,13 +33,13 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.calendar = new System.Windows.Forms.MonthCalendar();
             this.tabRejestr = new System.Windows.Forms.TabPage();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             this.labelSelectedDate = new System.Windows.Forms.Label();
             this.dgvRegister = new System.Windows.Forms.DataGridView();
             this.tabUczniowie = new System.Windows.Forms.TabPage();
             this.buttonDodaj = new System.Windows.Forms.Button();
             this.textBoxDodaj = new System.Windows.Forms.TextBox();
             this.dgvPupils = new System.Windows.Forms.DataGridView();
-            this.buttonRefresh = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabData.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -108,6 +108,16 @@
             this.tabRejestr.Text = "Rejestr";
             this.tabRejestr.UseVisualStyleBackColor = true;
             // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Location = new System.Drawing.Point(641, 10);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(120, 23);
+            this.buttonRefresh.TabIndex = 3;
+            this.buttonRefresh.Text = "Odswiez";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.reloadReg);
+            // 
             // labelSelectedDate
             // 
             this.labelSelectedDate.AutoSize = true;
@@ -163,16 +173,6 @@
             this.dgvPupils.RowTemplate.Height = 24;
             this.dgvPupils.Size = new System.Drawing.Size(682, 397);
             this.dgvPupils.TabIndex = 0;
-            // 
-            // buttonRefresh
-            // 
-            this.buttonRefresh.Location = new System.Drawing.Point(641, 10);
-            this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(120, 23);
-            this.buttonRefresh.TabIndex = 3;
-            this.buttonRefresh.Text = "Odswiez";
-            this.buttonRefresh.UseVisualStyleBackColor = true;
-            this.buttonRefresh.Click += new System.EventHandler(this.reloadRegister);
             // 
             // MainForm
             // 
