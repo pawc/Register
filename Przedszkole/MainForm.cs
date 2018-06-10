@@ -208,5 +208,45 @@ namespace Przedszkole
         {
             reloadRegister();
         }
+
+        private void generateRaport1(object sender, MouseEventArgs e)
+        {
+            dgvRaport1.DataSource = null;
+            dgvRaport1.Rows.Clear();
+
+            String month = comboBoxMonth.SelectedItem.ToString();
+            String year = comboBoxYear.SelectedItem.ToString();
+            String pupil = textBoxPupilNumber.Text;
+
+            //MessageBox.Show(month + ", " + year + ", " + pupil);
+
+            String query = "SELECT "+
+
+                "DATE_FORMAT(timeIn, '%d') dzien, "
+	            +"DATE_FORMAT(timeIn, '%H:%i') przyjscie, " 
+	            +"DATE_FORMAT(timeOut, '%H:%i') wyjscie, "
+	            +"IF(CONCAT(DATE(timeIn), ' 08:30:00') > timeIn, DATE_FORMAT(TIMEDIFF(CONCAT(DATE(timeIn), ' 08:30:00'), timeIn), '%H:%i'), DATE_FORMAT(CONCAT(DATE(timeIn), ' 00:00:00'), '%H:%i')) rano, "
+   	            +"IF(CONCAT(DATE(timeOut), ' 13:30:00') < timeOut, DATE_FORMAT(TIMEDIFF(timeOut, CONCAT(DATE(timeOut), ' 13:30:00')), '%H:%i'), DATE_FORMAT(CONCAT(DATE(timeOut), ' 00:00:00'), '%H:%i')) popoludniu, "
+
+	            +"CONVERT(DATE_FORMAT(IF(CONCAT(DATE(timeIn), ' 08:30:00') > timeIn, TIMEDIFF(CONCAT(DATE(timeIn), ' 08:30:00'), timeIn), CONVERT(CONCAT(DATE(timeIn), ' 00:00:00'), DATETIME)), '%H'), UNSIGNED) + "
+                +"IF(CONVERT(DATE_FORMAT(IF(CONCAT(DATE(timeIn), ' 08:30:00') > timeIn, TIMEDIFF(CONCAT(DATE(timeIn), ' 08:30:00'), timeIn), CONVERT(CONCAT(DATE(timeIn), ' 00:00:00'), DATETIME)), '%i'), UNSIGNED) > 0, 1, 0) dodatkowoGodzinRano, "
+    
+                +"CONVERT(DATE_FORMAT(IF(CONCAT(DATE(timeOut), ' 13:30:00') < timeOut, TIMEDIFF(timeOut, CONCAT(DATE(timeOut), ' 13:30:00')), CONVERT(CONCAT(DATE(timeOut), ' 00:00:00'), DATETIME)), '%H'), UNSIGNED) + "
+                +"IF(CONVERT(DATE_FORMAT(CONVERT(IF(CONCAT(DATE(timeOut), ' 13:30:00') < timeOut, TIMEDIFF(timeOut, CONCAT(DATE(timeOut), ' 13:30:00')), CONVERT(CONCAT(DATE(timeOut), ' 00:00:00'), DATETIME)), DATETIME), '%i'), UNSIGNED) > 0, 1, 0) dodatkowoGodzinPopoludniu "
+
+                +"FROM register "
+                +"WHERE "
+
+                +"DATE_FORMAT(timeIn, '%m') = '"+month+"' "
+                +"AND DATE_FORMAT(timeIn, '%Y') = '"+year+"' "
+                +"AND pupilId = "+pupil+"; ";
+
+            //MessageBox.Show(query);
+
+            dgvRaport1.DataSource = db.executeQuery(query);
+            dgvRaport1.DataMember = "std";
+            dgvRaport1.Refresh();
+
+        }
     }
 }

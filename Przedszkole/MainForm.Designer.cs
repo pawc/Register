@@ -40,6 +40,13 @@
             this.buttonDodaj = new System.Windows.Forms.Button();
             this.textBoxDodaj = new System.Windows.Forms.TextBox();
             this.dgvPupils = new System.Windows.Forms.DataGridView();
+            this.tabRaport1 = new System.Windows.Forms.TabPage();
+            this.dgvRaport1 = new System.Windows.Forms.DataGridView();
+            this.buttonRaport1 = new System.Windows.Forms.Button();
+            this.comboBoxMonth = new System.Windows.Forms.ComboBox();
+            this.comboBoxYear = new System.Windows.Forms.ComboBox();
+            this.textBoxPupilNumber = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabData.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -47,6 +54,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegister)).BeginInit();
             this.tabUczniowie.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPupils)).BeginInit();
+            this.tabRaport1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRaport1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -54,6 +63,7 @@
             this.tabControl1.Controls.Add(this.tabData);
             this.tabControl1.Controls.Add(this.tabRejestr);
             this.tabControl1.Controls.Add(this.tabUczniowie);
+            this.tabControl1.Controls.Add(this.tabRaport1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -174,6 +184,106 @@
             this.dgvPupils.Size = new System.Drawing.Size(682, 397);
             this.dgvPupils.TabIndex = 0;
             // 
+            // tabRaport1
+            // 
+            this.tabRaport1.Controls.Add(this.label1);
+            this.tabRaport1.Controls.Add(this.textBoxPupilNumber);
+            this.tabRaport1.Controls.Add(this.comboBoxYear);
+            this.tabRaport1.Controls.Add(this.comboBoxMonth);
+            this.tabRaport1.Controls.Add(this.buttonRaport1);
+            this.tabRaport1.Controls.Add(this.dgvRaport1);
+            this.tabRaport1.Location = new System.Drawing.Point(4, 25);
+            this.tabRaport1.Name = "tabRaport1";
+            this.tabRaport1.Size = new System.Drawing.Size(792, 462);
+            this.tabRaport1.TabIndex = 4;
+            this.tabRaport1.Text = "Raport 1";
+            this.tabRaport1.UseVisualStyleBackColor = true;
+            // 
+            // dgvRaport1
+            // 
+            this.dgvRaport1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRaport1.Location = new System.Drawing.Point(9, 29);
+            this.dgvRaport1.Name = "dgvRaport1";
+            this.dgvRaport1.RowTemplate.Height = 24;
+            this.dgvRaport1.Size = new System.Drawing.Size(775, 425);
+            this.dgvRaport1.TabIndex = 0;
+            // 
+            // buttonRaport1
+            // 
+            this.buttonRaport1.Location = new System.Drawing.Point(9, 3);
+            this.buttonRaport1.Name = "buttonRaport1";
+            this.buttonRaport1.Size = new System.Drawing.Size(106, 25);
+            this.buttonRaport1.TabIndex = 1;
+            this.buttonRaport1.Text = "Generuj";
+            this.buttonRaport1.UseVisualStyleBackColor = true;
+            this.buttonRaport1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.generateRaport1);
+            // 
+            // comboBoxMonth
+            // 
+            this.comboBoxMonth.AutoCompleteCustomSource.AddRange(new string[] {
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12"});
+            this.comboBoxMonth.Items.AddRange(new string[] {
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12"});
+            this.comboBoxMonth.FormattingEnabled = true;
+            this.comboBoxMonth.Location = new System.Drawing.Point(360, 2);
+            this.comboBoxMonth.Name = "comboBoxMonth";
+            this.comboBoxMonth.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxMonth.TabIndex = 2;
+            // 
+            // comboBoxYear
+            // 
+            this.comboBoxYear.AutoCompleteCustomSource.AddRange(new string[] {
+            "2018",
+            "2019",
+            "2020"});
+            this.comboBoxYear.FormattingEnabled = true;
+            this.comboBoxYear.Items.AddRange(new object[] {
+            "2018",
+            "2019",
+            "2020"});
+            this.comboBoxYear.Location = new System.Drawing.Point(209, 3);
+            this.comboBoxYear.Name = "comboBoxYear";
+            this.comboBoxYear.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxYear.TabIndex = 3;
+            // 
+            // textBoxPupilNumber
+            // 
+            this.textBoxPupilNumber.Location = new System.Drawing.Point(152, 4);
+            this.textBoxPupilNumber.Name = "textBoxPupilNumber";
+            this.textBoxPupilNumber.Size = new System.Drawing.Size(51, 22);
+            this.textBoxPupilNumber.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(121, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(25, 17);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "nr:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -192,6 +302,9 @@
             this.tabUczniowie.ResumeLayout(false);
             this.tabUczniowie.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPupils)).EndInit();
+            this.tabRaport1.ResumeLayout(false);
+            this.tabRaport1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRaport1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -209,6 +322,13 @@
         private System.Windows.Forms.DataGridView dgvRegister;
         private System.Windows.Forms.Label labelSelectedDate;
         private System.Windows.Forms.Button buttonRefresh;
+        private System.Windows.Forms.TabPage tabRaport1;
+        private System.Windows.Forms.Button buttonRaport1;
+        private System.Windows.Forms.DataGridView dgvRaport1;
+        private System.Windows.Forms.ComboBox comboBoxMonth;
+        private System.Windows.Forms.ComboBox comboBoxYear;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxPupilNumber;
     }
 }
 
