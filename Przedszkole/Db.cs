@@ -13,27 +13,13 @@ namespace Przedszkole
     {
 
         const String myConnectionString = "";
-        private MySqlConnection connection;
-        public Boolean isConnected = false;
-
-        public Db()
-        {
-            connection = new MySqlConnection();
-            connection.ConnectionString = myConnectionString;
-
-            try
-            {
-                connection.Open();
-                isConnected = true;
-            }
-            catch (Exception e1)
-            {
-                MessageBox.Show("Not connected due to: " + e1.ToString());
-            }
-        }
 
         public void executeNonQuery(String statement)
         {
+            MySqlConnection connection;
+            connection = new MySqlConnection();
+            connection.ConnectionString = myConnectionString;
+            connection.Open();
             MySqlCommand command;
             try
             {
@@ -41,19 +27,24 @@ namespace Przedszkole
                 command.CommandText = statement;
                 command.ExecuteNonQuery();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
             }
             finally
             {
                 command = null;
+                connection.Close();
             }
 
         }
 
-        public DataSet executeQuery(String query) 
+        public DataSet executeQuery(String query)
         {
+            MySqlConnection connection;
+            connection = new MySqlConnection();
+            connection.ConnectionString = myConnectionString;
+            connection.Open();
             MySqlDataAdapter mySqlDataAdapter;
             DataSet dataSet;
             try
@@ -68,10 +59,20 @@ namespace Przedszkole
                 MessageBox.Show(e1.ToString());
                 return null;
             }
+            finally
+            {
+                dataSet = null;
+                mySqlDataAdapter = null;
+                connection.Close();
+            }
         }
 
         public int executeQueryScalarInt(String query)
         {
+            MySqlConnection connection;
+            connection = new MySqlConnection();
+            connection.ConnectionString = myConnectionString;
+            connection.Open();
             MySqlCommand command;
             int result;
 
@@ -85,12 +86,21 @@ namespace Przedszkole
                 MessageBox.Show(e1.ToString());
                 result = -1;
             }
+            finally
+            {
+                command = null;
+                connection.Close();
+            }
 
             return result;
         }
 
         public String executeQueryScalarString(String query)
         {
+            MySqlConnection connection;
+            connection = new MySqlConnection();
+            connection.ConnectionString = myConnectionString;
+            connection.Open();
             MySqlCommand command;
             String result = null;
 
@@ -103,10 +113,14 @@ namespace Przedszkole
             {
                 MessageBox.Show(e1.ToString());
             }
+            finally
+            {
+                command = null;
+                connection.Close();
+            }
 
             return result;
         }
-
 
     }
 }

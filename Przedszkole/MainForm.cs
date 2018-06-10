@@ -28,13 +28,13 @@ namespace Przedszkole
             db = new Db();
             onDateSelected(sender, null);
 
-            if (db.isConnected) reloadPupilsList();
+            reloadPupilsList();
         }
 
         private void addPupil(object sender, EventArgs e)
         {
             String name = textBoxDodaj.Text;
-            String insert = "INSERT INTO pupils (name) values '"+name+"'";
+            String insert = "INSERT INTO pupils (name) values ('"+name+"')";
             db.executeNonQuery(insert);
  
             reloadPupilsList();
@@ -117,7 +117,7 @@ namespace Przedszkole
                         {
                             insertTimeIn(pupil, newTime);
                         }
-                        MessageBox.Show("Zaktualizowano");
+                        //MessageBox.Show("Zaktualizowano");
                         break;
                     }
                 case 2:
