@@ -41,12 +41,12 @@
             this.textBoxDodaj = new System.Windows.Forms.TextBox();
             this.dgvPupils = new System.Windows.Forms.DataGridView();
             this.tabRaport1 = new System.Windows.Forms.TabPage();
-            this.dgvRaport1 = new System.Windows.Forms.DataGridView();
-            this.buttonRaport1 = new System.Windows.Forms.Button();
-            this.comboBoxMonth = new System.Windows.Forms.ComboBox();
-            this.comboBoxYear = new System.Windows.Forms.ComboBox();
-            this.textBoxPupilNumber = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBoxPupilNumber = new System.Windows.Forms.TextBox();
+            this.comboBoxYear = new System.Windows.Forms.ComboBox();
+            this.comboBoxMonth = new System.Windows.Forms.ComboBox();
+            this.buttonRaport1 = new System.Windows.Forms.Button();
+            this.dgvRaport1 = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabData.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -199,58 +199,21 @@
             this.tabRaport1.Text = "Raport 1";
             this.tabRaport1.UseVisualStyleBackColor = true;
             // 
-            // dgvRaport1
+            // label1
             // 
-            this.dgvRaport1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRaport1.Location = new System.Drawing.Point(9, 29);
-            this.dgvRaport1.Name = "dgvRaport1";
-            this.dgvRaport1.RowTemplate.Height = 24;
-            this.dgvRaport1.Size = new System.Drawing.Size(775, 425);
-            this.dgvRaport1.TabIndex = 0;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(121, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(25, 17);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "nr:";
             // 
-            // buttonRaport1
+            // textBoxPupilNumber
             // 
-            this.buttonRaport1.Location = new System.Drawing.Point(9, 3);
-            this.buttonRaport1.Name = "buttonRaport1";
-            this.buttonRaport1.Size = new System.Drawing.Size(106, 25);
-            this.buttonRaport1.TabIndex = 1;
-            this.buttonRaport1.Text = "Generuj";
-            this.buttonRaport1.UseVisualStyleBackColor = true;
-            this.buttonRaport1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.generateRaport1);
-            // 
-            // comboBoxMonth
-            // 
-            this.comboBoxMonth.AutoCompleteCustomSource.AddRange(new string[] {
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12"});
-            this.comboBoxMonth.Items.AddRange(new string[] {
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12"});
-            this.comboBoxMonth.FormattingEnabled = true;
-            this.comboBoxMonth.Location = new System.Drawing.Point(360, 2);
-            this.comboBoxMonth.Name = "comboBoxMonth";
-            this.comboBoxMonth.Size = new System.Drawing.Size(121, 24);
-            this.comboBoxMonth.TabIndex = 2;
+            this.textBoxPupilNumber.Location = new System.Drawing.Point(152, 4);
+            this.textBoxPupilNumber.Name = "textBoxPupilNumber";
+            this.textBoxPupilNumber.Size = new System.Drawing.Size(51, 22);
+            this.textBoxPupilNumber.TabIndex = 4;
             // 
             // comboBoxYear
             // 
@@ -268,21 +231,58 @@
             this.comboBoxYear.Size = new System.Drawing.Size(121, 24);
             this.comboBoxYear.TabIndex = 3;
             // 
-            // textBoxPupilNumber
+            // comboBoxMonth
             // 
-            this.textBoxPupilNumber.Location = new System.Drawing.Point(152, 4);
-            this.textBoxPupilNumber.Name = "textBoxPupilNumber";
-            this.textBoxPupilNumber.Size = new System.Drawing.Size(51, 22);
-            this.textBoxPupilNumber.TabIndex = 4;
+            this.comboBoxMonth.AutoCompleteCustomSource.AddRange(new string[] {
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12"});
+            this.comboBoxMonth.FormattingEnabled = true;
+            this.comboBoxMonth.Items.AddRange(new object[] {
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12"});
+            this.comboBoxMonth.Location = new System.Drawing.Point(360, 2);
+            this.comboBoxMonth.Name = "comboBoxMonth";
+            this.comboBoxMonth.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxMonth.TabIndex = 2;
             // 
-            // label1
+            // buttonRaport1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(121, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 17);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "nr:";
+            this.buttonRaport1.Location = new System.Drawing.Point(9, 3);
+            this.buttonRaport1.Name = "buttonRaport1";
+            this.buttonRaport1.Size = new System.Drawing.Size(106, 25);
+            this.buttonRaport1.TabIndex = 1;
+            this.buttonRaport1.Text = "Generuj";
+            this.buttonRaport1.UseVisualStyleBackColor = true;
+            this.buttonRaport1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.generateRaport1);
+            // 
+            // dgvRaport1
+            // 
+            this.dgvRaport1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRaport1.Location = new System.Drawing.Point(9, 29);
+            this.dgvRaport1.Name = "dgvRaport1";
+            this.dgvRaport1.RowTemplate.Height = 24;
+            this.dgvRaport1.Size = new System.Drawing.Size(775, 425);
+            this.dgvRaport1.TabIndex = 0;
             // 
             // MainForm
             // 

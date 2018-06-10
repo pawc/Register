@@ -25,6 +25,9 @@ namespace Przedszkole
 
         private void MainFormOnLoad(object sender, EventArgs e)
         {
+            comboBoxMonth.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxYear.DropDownStyle = ComboBoxStyle.DropDownList;
+            dgvRaport1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             db = new Db();
             onDateSelected(sender, null);
 
@@ -53,7 +56,7 @@ namespace Przedszkole
 
         private void onDateSelected(object sender, DateRangeEventArgs e)
         {
-            selectedDateString = calendar.SelectionStart.ToShortDateString();
+            selectedDateString = calendar.SelectionStart.Date.ToString("dd.MM.yyyy");
             labelSelectedDate.Text = selectedDateString;
             reloadRegister();
         }
@@ -229,10 +232,10 @@ namespace Przedszkole
    	            +"IF(CONCAT(DATE(timeOut), ' 13:30:00') < timeOut, DATE_FORMAT(TIMEDIFF(timeOut, CONCAT(DATE(timeOut), ' 13:30:00')), '%H:%i'), DATE_FORMAT(CONCAT(DATE(timeOut), ' 00:00:00'), '%H:%i')) popoludniu, "
 
 	            +"CONVERT(DATE_FORMAT(IF(CONCAT(DATE(timeIn), ' 08:30:00') > timeIn, TIMEDIFF(CONCAT(DATE(timeIn), ' 08:30:00'), timeIn), CONVERT(CONCAT(DATE(timeIn), ' 00:00:00'), DATETIME)), '%H'), UNSIGNED) + "
-                +"IF(CONVERT(DATE_FORMAT(IF(CONCAT(DATE(timeIn), ' 08:30:00') > timeIn, TIMEDIFF(CONCAT(DATE(timeIn), ' 08:30:00'), timeIn), CONVERT(CONCAT(DATE(timeIn), ' 00:00:00'), DATETIME)), '%i'), UNSIGNED) > 0, 1, 0) dodatkowoGodzinRano, "
+                +"IF(CONVERT(DATE_FORMAT(IF(CONCAT(DATE(timeIn), ' 08:30:00') > timeIn, TIMEDIFF(CONCAT(DATE(timeIn), ' 08:30:00'), timeIn), CONVERT(CONCAT(DATE(timeIn), ' 00:00:00'), DATETIME)), '%i'), UNSIGNED) > 0, 1, 0) GodzinRano, "
     
                 +"CONVERT(DATE_FORMAT(IF(CONCAT(DATE(timeOut), ' 13:30:00') < timeOut, TIMEDIFF(timeOut, CONCAT(DATE(timeOut), ' 13:30:00')), CONVERT(CONCAT(DATE(timeOut), ' 00:00:00'), DATETIME)), '%H'), UNSIGNED) + "
-                +"IF(CONVERT(DATE_FORMAT(CONVERT(IF(CONCAT(DATE(timeOut), ' 13:30:00') < timeOut, TIMEDIFF(timeOut, CONCAT(DATE(timeOut), ' 13:30:00')), CONVERT(CONCAT(DATE(timeOut), ' 00:00:00'), DATETIME)), DATETIME), '%i'), UNSIGNED) > 0, 1, 0) dodatkowoGodzinPopoludniu "
+                +"IF(CONVERT(DATE_FORMAT(CONVERT(IF(CONCAT(DATE(timeOut), ' 13:30:00') < timeOut, TIMEDIFF(timeOut, CONCAT(DATE(timeOut), ' 13:30:00')), CONVERT(CONCAT(DATE(timeOut), ' 00:00:00'), DATETIME)), DATETIME), '%i'), UNSIGNED) > 0, 1, 0) GodzinPopoludniu "
 
                 +"FROM register "
                 +"WHERE "
